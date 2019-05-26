@@ -40,7 +40,7 @@ function saoCarlosOficial(URL) {
   var fetchUrl = UrlFetchApp.fetch(URL);
   var contentText = fetchUrl.getContentText();
   
-  var regexData = /<font face="Verdana" size="3"><b>(..\/..) -.*<\/b><br><\/font>/;
+  var regexData = /<font face="Verdana" size="3">(..\/..) -.*<br><\/font>/;
   var regexRadarUm = /Radar 1 - (.*)<br>/;
   var regexRadarDois = /Radar 2 - (.*)<br>/;
   var regexRadarTres = /Radar 3 - (.*)<br>/;
