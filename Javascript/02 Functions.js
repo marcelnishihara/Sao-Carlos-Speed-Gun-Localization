@@ -34,26 +34,34 @@ function saoCarlosAgora(URL) {
 
 function saoCarlosOficial(URL) {
   var localizacaoRadarSCO = new Array();
-  
+
   try {
-    
-  var fetchUrl = UrlFetchApp.fetch(URL);
-  var contentText = fetchUrl.getContentText();
-  
-  var regexData = /<font face="Verdana" size="3"><b>(..\/..) -.*<\/b><br><\/font>/;
-  var regexRadarUm = /Radar 1 - (.*)<br>/;
-  var regexRadarDois = /Radar 2 - (.*)<br>/;
-  var regexRadarTres = /Radar 3 - (.*)<br>/;
-  
-  localizacaoRadarSCO[0] = regexData.exec(contentText)[1];
-  localizacaoRadarSCO[1] = regexRadarUm.exec(contentText)[1];
-  localizacaoRadarSCO[2] = regexRadarDois.exec(contentText)[1];
-  localizacaoRadarSCO[3] = regexRadarTres.exec(contentText)[1];
-  
+
+    var fetchUrl = UrlFetchApp.fetch(URL);
+    var contentText = fetchUrl.getContentText();
+
+    var regexDataUm = /<font face="Verdana" size="3"><b>(..\/..) -.*<\/b><br><\/font>/;
+    var regexDataDois = /<font face="Verdana" size="3">(..\/..) -.*<br><\/font>/;
+    var regexRadarUm = /Radar 1 - (.*)<br>/;
+    var regexRadarDois = /Radar 2 - (.*)<br>/;
+    var regexRadarTres = /Radar 3 - (.*)<br>/;
+
+    var test = regexDataUm.exec(contentText);
+
+    if (test === null) {
+      localizacaoRadarSCO[0] = regexDataDois.exec(contentText)[1];
+    } else {
+      localizacaoRadarSCO[0] = regexDataUm.exec(contentText)[1];
+    }
+
+    localizacaoRadarSCO[1] = regexRadarUm.exec(contentText)[1];
+    localizacaoRadarSCO[2] = regexRadarDois.exec(contentText)[1];
+    localizacaoRadarSCO[3] = regexRadarTres.exec(contentText)[1];
+
   } catch (errSCO) {
     var errMsgSCO = "São Carlos Oficial\n" + errSCO;
     GmailApp.sendEmail("marcelnishihara@gmail.com", "[ERRO] Sao-Carlos-Speed-Gun-Localization", errMsgSCO);
-    
+
   }
 
   return localizacaoRadarSCO;
