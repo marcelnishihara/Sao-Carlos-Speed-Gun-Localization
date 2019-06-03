@@ -1,9 +1,9 @@
 from globals import *
 import urllib3
+import re
 
 def main():
-    s = list_of_websites[0]
-    html = return_html(s)
+    html = return_html(source)
     get_localization(html)
 
 def return_html(site):
@@ -20,15 +20,16 @@ def return_html(site):
         exit()
 
 def get_localization(h):
-    num_of_char = len(h)
-    num_of_char_message = "The program received a html code with {} characters".format(num_of_char)
-    print(num_of_char_message)
+    regex_date = re.compile(r"Radar \| (.*)<\/h2>")
+    regex_speed_limits = re.compile(r"<big>(.{2}) <small>")
+    regex_section_radar = re.compile(r"<\/big><div><h4>(.*?)<\/h4>")
 
-    section_start = "<section class=\"radar\">"
-    section_end = "<div class=\"enquete\">"
+    date_match = regex_date.search(h)
+    speed_limits_matches = regex_speed_limits.finditer(h)
+    section_radar_matches = regex_section_radar.finditer(h)
 
-    index_char_start = h.index(section_start)
-    index_char_end = h.index(section_end)
+    print("Data: {}".format(date_match.group(1)))
 
-    print("It starts: {}\nIt ends: {}".format(index_char_start, index_char_end))
-    
+    for i in section_radar_matches:
+        for j in speed_limits_matches:
+            print("Localização: {}, Limite de Velocidade: {} km/h".format(i.group(1), j.group(1)))
