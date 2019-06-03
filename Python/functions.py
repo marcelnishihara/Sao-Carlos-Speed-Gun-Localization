@@ -33,3 +33,4 @@ def get_localization(h):
     for i in section_radar_matches:
         for j in speed_limits_matches:
             print("Localização: {}, Limite de Velocidade: {} km/h".format(i.group(1), j.group(1)))
+            
