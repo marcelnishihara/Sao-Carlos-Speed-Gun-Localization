@@ -1,3 +1,7 @@
-Python/env
-Python/__pycache__
-Python/.vscode
+# FOLDERS
+env
+__pycache__
+.vscode
+
+# FILES
+credentials.json

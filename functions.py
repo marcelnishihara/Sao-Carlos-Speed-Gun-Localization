@@ -9,13 +9,13 @@ def main(request):
         has_data = bool(local_and_speed_limit)
 
         if has_data:
-            data_captured_msg = f"The program reach the data\nConsider drive carefully anyway."
+            data_captured_msg = f"The program reach the data\nConsider drive carefully anyway.\n"
             pretty_print(data_captured_msg, True)
             print(local_and_speed_limit)
             return local_and_speed_limit
 
     except:
-        exception_msg = f"Something Went Wrong.\nDrive Slowly."
+        exception_msg = f"Something Went Wrong.\nDrive Slowly.\n"
         pretty_print(exception_msg, False)
         return exception_msg
 
@@ -49,11 +49,9 @@ def get_localization_and_speed(html):
 
             if is_even:
                 current_radar = {}
-                
+
                 speed_limit = int(tuple_value[index].strip())
                 road = tuple_value[index + 1].strip().lower()
-
-                msg = f"Road: {road} | Speed Limit:{speed_limit}"
 
                 current_radar = {
                     "localization" : road,
