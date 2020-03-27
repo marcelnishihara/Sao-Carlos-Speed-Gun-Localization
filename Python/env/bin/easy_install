@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/marcelnishihara/Python/Sao Carlos Speed Gun Localization/env/bin/python" "$0" "$@"
-' '''
+#!/home/marcelnishihara/Projects/Sao-Carlos-Speed-Gun-Localization/Python/env/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
