@@ -1,4 +1,4 @@
-from functions import *
+from helpers import main
 
 if __name__ == "__main__":
     main()

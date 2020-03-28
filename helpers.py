@@ -1,6 +1,6 @@
 import requests, re
 from globals import *
-
+from sheet_connection import write_object_to_sheet
 
 def main(request):
     try:
@@ -11,7 +11,7 @@ def main(request):
         if has_data:
             data_captured_msg = f"The program reach the data\nConsider drive carefully anyway.\n"
             pretty_print(data_captured_msg, True)
-            print(local_and_speed_limit)
+            write_object_to_sheet(local_and_speed_limit)
             return local_and_speed_limit
 
     except:
@@ -54,13 +54,13 @@ def get_localization_and_speed(html):
                 road = tuple_value[index + 1].strip().lower()
 
                 current_radar = {
-                    "localization" : road,
+                    "position" : road,
                     "speed_limit" : speed_limit
                 }
 
                 radar_number += 1
                 localization_and_speed[radar_number] = current_radar
-
+    
     return localization_and_speed
 
 

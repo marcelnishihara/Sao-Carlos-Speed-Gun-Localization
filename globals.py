@@ -7,3 +7,8 @@ colors = {
     "success" : "\033[92m",
     "warning" : "\033[93m"
 }
+
+spreadsheet = {
+    "id" : "1FBnlNFE2D0MTwgwkDqg4Qy9V6xAyBmXuuWRszKE8DrY",
+    "sheet_data_base" : "data_base"
+}
