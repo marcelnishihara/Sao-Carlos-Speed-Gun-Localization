@@ -1,9 +1,0 @@
-#!/bin/bash
-
-PROJECT_NAME="Sao-Carlos-Speed-Gun-Localization"
-PROJECT_ID="1UNIZlzBiSnGXQElFsJMnyhEd000rIh49QI65U1EdBLYIN6rrq4-jskQO"
-
-echo -e "\nGETTING THE UPDATES FROM GOOGLE APPS SCRIPT PROJECT: $PROJECT_NAME\n"
-clasp pull .clasp.json
-
-echo -e "\nTHE SCRIPT WAS SUCCESSFULLY PLAYED\n"
