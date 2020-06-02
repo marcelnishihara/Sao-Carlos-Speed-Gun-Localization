@@ -1,4 +1,5 @@
 import requests, re
+from datetime import datetime
 from globals import *
 
 
@@ -40,14 +41,19 @@ def return_html(source):
 
 def get_localization_and_speed(html):
     regex_localization_and_speed = re.findall(regex, html)
+    complete_info = {}
     localization_and_speed = {}
     radar_number = 0
+
+    year = datetime.now().year
+    day_month_tuple = re.findall(regex_date, regex_localization_and_speed[0][0])
+    key_date = f"{day_month_tuple[0][0]}/{day_month_tuple[0][1]}/{year}"
     
     for tuple_value in regex_localization_and_speed:
         for index, value in enumerate(tuple_value):
-            is_even = (index % 2) == 0
+            is_odd = (index % 2) != 0
 
-            if is_even:
+            if is_odd:
                 current_radar = {}
                 
                 speed_limit = int(tuple_value[index].strip())
@@ -63,7 +69,8 @@ def get_localization_and_speed(html):
                 radar_number += 1
                 localization_and_speed[radar_number] = current_radar
 
-    return localization_and_speed
+    complete_info[key_date] = localization_and_speed
+    return complete_info
 
 
 def pretty_print(msg, status):
